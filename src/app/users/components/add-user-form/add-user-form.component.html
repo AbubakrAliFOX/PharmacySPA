@@ -1,81 +1,92 @@
-<form action="" class="w-1/2">
-  <label class="form-control w-full mt-5">
-    <span class="mb-2 ml-1">First Name</span>
-    <input
-      type="text"
-      placeholder="Khaled"
-      class="input input-bordered w-full"
-      name="firstName"
-    />
-  </label>
-  <label class="form-control w-full mt-5">
-    <span class="mb-2 ml-1">Last Name</span>
-    <input
-      type="text"
-      placeholder="Awadallah"
-      class="input input-bordered w-full"
-      name="lastName"
-    />
-  </label>
-  <label class="form-control w-full mt-5">
-    <span class="mb-2 ml-1">Phone Number</span>
-    <input
-      type="text"
-      placeholder="05XXXXXXXXX"
-      class="input input-bordered w-full"
-      name="phoneNumber"
-    />
-  </label>
-  <label class="form-control w-full mt-5">
-    <span class="mb-2 ml-1">Address</span>
-    <input
-      type="text"
-      placeholder="Al Shifaa District, Africa St"
-      class="input input-bordered w-full"
-      name="address"
-    />
-  </label>
-  <label class="form-control w-full mt-5 mb-2 ml-1" for="gender">Gender</label>
-  <select id="gender" class="select select-bordered w-full">
-    <option disabled selected>Gender</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-  </select>
-
-  <label class="form-control w-full mt-5">
+<form [formGroup]="newUserForm" (ngSubmit)="handleSubmit()" class="w-1/2">
+  <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1">Username</span>
     <input
       type="text"
       placeholder="KhaledPharma221"
       class="input input-bordered w-full"
-      name="userName"
+      formControlName="userName"
     />
   </label>
-  <label class="form-control w-full mt-5">
+  <label class="form-control w-full mt-10">
+    <span class="mb-2 ml-1">Email</span>
+    <input
+      type="text"
+      placeholder="example@something.com"
+      class="input input-bordered w-full"
+      formControlName="email"
+    />
+  </label>
+  <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1">Password</span>
     <input
       type="password"
       class="input input-bordered w-full"
-      name="password"
+      formControlName="password"
     />
   </label>
-  <label class="form-control w-full mt-5">
+  <label class="form-control w-full my-10">
     <span class="mb-2 ml-1">Confirm Password</span>
     <input
       type="password"
       class="input input-bordered w-full"
-      name="passwordConfirmation"
+      formControlName="passwordConfirmation"
     />
   </label>
-
-  <label class="form-control w-full mt-5 mb-2 ml-1" for="role">Role</label>
+  <div class="divider divider-neutral">Personal Information</div>
+  <label class="form-control w-full my-10">
+    <span class="mb-2 ml-1">First Name</span>
+    <input
+      type="text"
+      placeholder="Khaled"
+      class="input input-bordered w-full"
+      formControlName="firstName"
+    />
+  </label>
+  <label class="form-control w-full mt-10">
+    <span class="mb-2 ml-1">Last Name</span>
+    <input
+      type="text"
+      placeholder="Awadallah"
+      class="input input-bordered w-full"
+      formControlName="lastName"
+    />
+  </label>
+  <label class="form-control w-full mt-10">
+    <span class="mb-2 ml-1">Phone Number</span>
+    <input
+      type="text"
+      placeholder="05XXXXXXXXX"
+      class="input input-bordered w-full"
+      formControlName="phoneNumber"
+    />
+  </label>
+  <label class="form-control w-full mt-10">
+    <span class="mb-2 ml-1"
+      >Address
+      <div class="badge badge-ghost">optinal</div></span
+    >
+    <input
+      type="text"
+      placeholder="Al Shifaa District, Africa St"
+      class="input input-bordered w-full"
+      formControlName="address"
+    />
+  </label>
+  <label class="form-control w-full mt-10 mb-2 ml-1" for="gender">Gender</label>
+  <select id="gender" class="select select-bordered w-full">
+    <option disabled selected>Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+  <label class="form-control w-full mt-10 mb-2 ml-1" for="role">Role</label>
   <select id="role" class="select select-bordered w-full">
     <option disabled selected>Role</option>
     <option value="male">Male</option>
     <option value="female">Female</option>
   </select>
 
-  <label class="form-control w-full mt-5 mb-2 ml-1" for="manager"
+  <label class="form-control w-full mt-10 mb-2 ml-1" for="manager"
     >Manager</label
   >
   <select id="manager" class="select select-bordered w-full">
@@ -84,7 +95,7 @@
     <option value="female">Female</option>
   </select>
 
-  <label class="form-control w-full mt-5 mb-2 ml-1" for="branch">Branch</label>
+  <label class="form-control w-full mt-10 mb-2 ml-1" for="branch">Branch</label>
   <select id="branch" class="select select-bordered w-full">
     <option disabled selected>Branch</option>
     <option value="male">Male</option>

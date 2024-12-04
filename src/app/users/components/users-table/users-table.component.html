@@ -1,9 +1,4 @@
-<button class="btn btn-info" [disabled]="disable">
-  Should I be disabled??
-</button>
-<button class="btn btn-info" (click)="disableOtherButton()">Disable</button>
 <table class="table mt-5">
-  <!-- head -->
   <thead>
     <tr>
       <th>Name</th>
@@ -13,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (user of usersList; track user.id) {
+    @if (!loading) { @for (user of usersList; track user.id) {
     <tr class="hover">
       <td>
         <div class="flex items-center gap-3">
@@ -39,6 +34,32 @@
           >details</a
         >
       </th>
+    </tr>
+    }} @else {
+    <tr>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+    </tr>
+    <tr>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+    </tr>
+    <tr>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+    </tr>
+    <tr>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+    </tr>
+    <tr>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
+      <td><div class="skeleton h-8 w-full"></div></td>
     </tr>
     }
   </tbody>

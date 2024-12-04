@@ -1,2 +1,13 @@
-<a class="btn btn-primary" routerLink="new">Add User</a> {{users[0].id}}
-<app-users-table [usersList]="users" />
+<a class="btn btn-primary" routerLink="add">Add User</a>
+<app-users-table
+  [usersList]="users"
+  [loading]="loading"
+  [error]="errorMessage"
+/>
+@if(errorMessage) {
+<div class="toast toast-top toast-center">
+  <div class="alert alert-error">
+    <span>{{errorMessage}}</span>
+  </div>
+</div>
+}

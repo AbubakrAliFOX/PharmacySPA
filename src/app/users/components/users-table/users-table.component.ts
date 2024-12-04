@@ -10,10 +10,6 @@ import { User } from '../../models/User';
 })
 export class UsersTableComponent {
   @Input() usersList: User[] = [];
-
-  disable = false;
-
-  disableOtherButton() {
-    this.disable = !this.disable;
-  }
+  @Input() error: string | null = null;
+  @Input() loading: boolean = true;
 }
