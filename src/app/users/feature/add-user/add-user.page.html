@@ -1,2 +1,5 @@
-<app-add-user-form [usersMetadata]="usersMetadata" />
+<app-add-user-form
+  (formSubmit)="handleFormSubmit($event)"
+  [usersMetadata]="usersMetadata"
+/>
 <app-back-button />

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -11,9 +11,10 @@ import { UserMetadata } from '../../models/UserMetadata';
 import { Branch } from '../../models/Branch';
 import { Role } from '../../models/Role';
 import { Manager } from '../../models/Manager';
-import { ValidationErrorPipe } from '../../pipes/validation-error.pipe';
 import { passwordMatchValidator } from '../../helpers/passwordMatchValidator';
 import { getErrorMessages } from '../../helpers/getErrorMessages';
+import { UserExtensive } from '../../models/UserExtensive';
+import { ToUserExtensive } from '../../helpers/ToUserExtensive';
 
 @Component({
   selector: 'app-add-user-form',
@@ -25,6 +26,7 @@ export class AddUserFormComponent {
   constructor(private metadataService: MetadataService) {}
 
   @Input() usersMetadata: UserMetadata | null = null;
+  @Output() formSubmit = new EventEmitter<UserExtensive>();
 
   managers: Manager[] | null = null;
   roles: Role[] | null = null;
@@ -116,7 +118,10 @@ export class AddUserFormComponent {
   }
 
   handleSubmit(): void {
-    console.log(this.newUserForm.value);
+    if (this.newUserForm.valid) {
+      const userInfo: UserExtensive = ToUserExtensive(this.newUserForm.value);
+      this.formSubmit.emit(userInfo);
+    }
   }
 
   ngOnInit(): void {

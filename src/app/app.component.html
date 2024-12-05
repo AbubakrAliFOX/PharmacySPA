@@ -1,3 +1,16 @@
+@if(errorMessage) {
+<div class="toast toast-top toast-center">
+  <div class="alert alert-error">
+    <span>{{ errorMessage }}</span>
+  </div>
+</div>
+} @if(successMessage) {
+<div class="toast toast-top toast-center">
+  <div class="alert alert-success">
+    <span>{{ successMessage }}</span>
+  </div>
+</div>
+}
 <main class="flex w-screen h-screen">
   <aside class="w-1/5 bg-base-200 py-2 justify-center">
     <app-sidebar />

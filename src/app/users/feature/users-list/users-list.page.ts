@@ -3,6 +3,7 @@ import { UsersTableComponent } from '../../components/users-table/users-table.co
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User';
 import { RouterLink } from '@angular/router';
+import { UserExtensive } from '../../models/UserExtensive';
 
 @Component({
   selector: 'app-users-list',
