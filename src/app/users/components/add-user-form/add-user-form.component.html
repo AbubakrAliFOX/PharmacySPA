@@ -64,7 +64,7 @@
   <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1"
       >Address
-      <div class="badge badge-ghost">optinal</div></span
+      <div class="badge badge-ghost">optional</div></span
     >
     <input
       type="text"
@@ -73,32 +73,55 @@
       formControlName="address"
     />
   </label>
-  <label class="form-control w-full mt-10 mb-2 ml-1" for="gender">Gender</label>
-  <select id="gender" class="select select-bordered w-full">
-    <option disabled selected>Gender</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-  </select>
-  <label class="form-control w-full mt-10 mb-2 ml-1" for="role">Role</label>
-  <select id="role" class="select select-bordered w-full">
-    <option disabled selected>Role</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-  </select>
-
-  <label class="form-control w-full mt-10 mb-2 ml-1" for="manager"
-    >Manager</label
+  <label class="form-control w-full my-10 mb-2 ml-1" for="gender">Gender</label>
+  <select
+    formControlName="gender"
+    id="gender"
+    class="select select-bordered w-full"
   >
-  <select id="manager" class="select select-bordered w-full">
-    <option disabled selected>Manager</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
+    <option disabled selected>Gender</option>
+    <option value="0">Male</option>
+    <option value="1">Female</option>
+  </select>
+  <div class="divider divider-neutral">Employment Information</div>
+  <label class="form-control w-full mt-10 mb-2 ml-1" for="role">Role</label>
+  <select
+    formControlName="roleId"
+    (change)="handleRoleSelect($event)"
+    id="role"
+    class="select select-bordered w-full"
+  >
+    <option disabled selected>Role</option>
+    @for (role of usersMetadata?.roles; track role.id) {
+    <option value="{{ role.id }}">{{ role.name }}</option>
+    }
   </select>
 
   <label class="form-control w-full mt-10 mb-2 ml-1" for="branch">Branch</label>
-  <select id="branch" class="select select-bordered w-full">
+  <select
+    formControlName="branchId"
+    (change)="handleBranchSelect($event)"
+    id="branch"
+    class="select select-bordered w-full"
+  >
     <option disabled selected>Branch</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
+    @for (branch of usersMetadata?.branches; track branch.id) {
+    <option value="{{ branch.id }}">{{ branch.name }}</option>
+    }
   </select>
+
+  <label class="form-control w-full my-10 mb-2 ml-1" for="manager"
+    >Manager</label
+  >
+  <select
+    formControlName="managerId"
+    id="manager"
+    class="select select-bordered w-full"
+  >
+    <option disabled selected>Manager</option>
+    @for (manager of managers; track manager.id) {
+    <option value="{{ manager.id }}">{{ manager.fullName }}</option>
+    }
+  </select>
+  <button type="submit" class="btn btn-info mt-7">Create User</button>
 </form>
