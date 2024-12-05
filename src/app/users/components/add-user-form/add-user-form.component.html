@@ -7,6 +7,13 @@
       class="input input-bordered w-full"
       formControlName="userName"
     />
+
+    @if (newUserForm.get('userName')?.invalid &&
+    newUserForm.get('userName')?.touched) {
+    <span class="mt-1 text-error font-semibold">{{
+      getErrorMessages(newUserForm.get("userName")?.errors)
+    }}</span>
+    }
   </label>
   <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1">Email</span>
@@ -16,6 +23,12 @@
       class="input input-bordered w-full"
       formControlName="email"
     />
+    @if (newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched)
+    {
+    <span class="mt-1 text-error font-semibold">{{
+      getErrorMessages(newUserForm.get("email")?.errors)
+    }}</span>
+    }
   </label>
   <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1">Password</span>
@@ -24,6 +37,12 @@
       class="input input-bordered w-full"
       formControlName="password"
     />
+    @if (newUserForm.get('password')?.invalid &&
+    newUserForm.get('password')?.touched) {
+    <span class="mt-1 text-error font-semibold">{{
+      getErrorMessages(newUserForm.get("password")?.errors)
+    }}</span>
+    }
   </label>
   <label class="form-control w-full my-10">
     <span class="mb-2 ml-1">Confirm Password</span>
@@ -32,6 +51,10 @@
       class="input input-bordered w-full"
       formControlName="passwordConfirmation"
     />
+    @if (newUserForm.get('passwordConfirmation')?.errors?.['passwordMismatch'])
+    {
+    <span class="mt-1 text-error font-semibold">Passwords don't match</span>
+    }
   </label>
   <div class="divider divider-neutral">Personal Information</div>
   <label class="form-control w-full my-10">
@@ -42,6 +65,12 @@
       class="input input-bordered w-full"
       formControlName="firstName"
     />
+    @if (newUserForm.get('firstName')?.invalid &&
+    newUserForm.get('firstName')?.touched) {
+    <span class="mt-1 text-error font-semibold">{{
+      getErrorMessages(newUserForm.get("firstName")?.errors)
+    }}</span>
+    }
   </label>
   <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1">Last Name</span>
@@ -51,6 +80,12 @@
       class="input input-bordered w-full"
       formControlName="lastName"
     />
+    @if (newUserForm.get('lastName')?.invalid &&
+    newUserForm.get('lastName')?.touched) {
+    <span class="mt-1 text-error font-semibold">{{
+      getErrorMessages(newUserForm.get("lastName")?.errors)
+    }}</span>
+    }
   </label>
   <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1">Phone Number</span>
@@ -60,6 +95,12 @@
       class="input input-bordered w-full"
       formControlName="phoneNumber"
     />
+    @if (newUserForm.get('phoneNumber')?.invalid &&
+    newUserForm.get('phoneNumber')?.touched) {
+    <span class="mt-1 text-error font-semibold">{{
+      getErrorMessages(newUserForm.get("phoneNumber")?.errors)
+    }}</span>
+    }
   </label>
   <label class="form-control w-full mt-10">
     <span class="mb-2 ml-1"
@@ -83,6 +124,13 @@
     <option value="0">Male</option>
     <option value="1">Female</option>
   </select>
+  @if (newUserForm.get('gender')?.invalid && newUserForm.get('gender')?.touched)
+  {
+  <span class="mt-1 text-error font-semibold">{{
+    getErrorMessages(newUserForm.get("gender")?.errors)
+  }}</span>
+  }
+
   <div class="divider divider-neutral">Employment Information</div>
   <label class="form-control w-full mt-10 mb-2 ml-1" for="role">Role</label>
   <select
@@ -96,6 +144,12 @@
     <option value="{{ role.id }}">{{ role.name }}</option>
     }
   </select>
+  @if (newUserForm.get('roleId')?.invalid && newUserForm.get('roleId')?.touched)
+  {
+  <span class="mt-1 text-error font-semibold">{{
+    getErrorMessages(newUserForm.get("roleId")?.errors)
+  }}</span>
+  }
 
   <label class="form-control w-full mt-10 mb-2 ml-1" for="branch">Branch</label>
   <select
@@ -109,6 +163,12 @@
     <option value="{{ branch.id }}">{{ branch.name }}</option>
     }
   </select>
+  @if (newUserForm.get('branchId')?.invalid &&
+  newUserForm.get('branchId')?.touched) {
+  <span class="mt-1 text-error font-semibold">{{
+    getErrorMessages(newUserForm.get("branchId")?.errors)
+  }}</span>
+  }
 
   <label class="form-control w-full my-10 mb-2 ml-1" for="manager"
     >Manager</label
@@ -123,5 +183,11 @@
     <option value="{{ manager.id }}">{{ manager.fullName }}</option>
     }
   </select>
-  <button type="submit" class="btn btn-info mt-7">Create User</button>
+  <button
+    type="submit"
+    class="btn btn-info mt-7"
+    [disabled]="!newUserForm.valid"
+  >
+    Create User
+  </button>
 </form>

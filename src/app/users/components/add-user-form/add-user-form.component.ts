@@ -1,10 +1,19 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { MetadataService } from '../../services/metadata.service';
 import { UserMetadata } from '../../models/UserMetadata';
 import { Branch } from '../../models/Branch';
 import { Role } from '../../models/Role';
 import { Manager } from '../../models/Manager';
+import { ValidationErrorPipe } from '../../pipes/validation-error.pipe';
+import { passwordMatchValidator } from '../../helpers/passwordMatchValidator';
+import { getErrorMessages } from '../../helpers/getErrorMessages';
 
 @Component({
   selector: 'app-add-user-form',
@@ -21,20 +30,44 @@ export class AddUserFormComponent {
   roles: Role[] | null = null;
   branches: Branch[] | null = null;
 
-  newUserForm = new FormGroup({
-    userName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    passwordConfirmation: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    address: new FormControl(''),
-    gender: new FormControl(''),
-    roleId: new FormControl(''),
-    branchId: new FormControl(''),
-    managerId: new FormControl(''),
-  });
+  newUserForm = new FormGroup(
+    {
+      userName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(100),
+      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20),
+      ]),
+      passwordConfirmation: new FormControl(''),
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(50),
+      ]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(50),
+      ]),
+      phoneNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'),
+        Validators.minLength(6),
+        Validators.maxLength(15),
+      ]),
+      address: new FormControl(''),
+      gender: new FormControl('', [Validators.required]),
+      roleId: new FormControl('', [Validators.required]),
+      branchId: new FormControl('', [Validators.required]),
+      managerId: new FormControl('', []),
+    },
+    { validators: passwordMatchValidator('password', 'passwordConfirmation') }
+  );
 
   selectedBranch: Branch | null = null;
   selectedRole: Role | null = null;
@@ -74,6 +107,12 @@ export class AddUserFormComponent {
           (manager) => manager.branch.id === this.selectedBranch!.id
         ) || [];
     }
+  }
+
+  getErrorMessages(
+    validationError: ValidationErrors | null | undefined
+  ): string {
+    return getErrorMessages(validationError);
   }
 
   handleSubmit(): void {
