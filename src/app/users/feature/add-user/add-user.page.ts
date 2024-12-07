@@ -5,6 +5,7 @@ import { MetadataService } from '../../services/metadata.service';
 import { UserMetadata } from '../../models/UserMetadata';
 import { UserExtensive } from '../../models/UserExtensive';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -15,7 +16,8 @@ import { UserService } from '../../services/user.service';
 export class AddUserPage {
   constructor(
     private metadataService: MetadataService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   usersMetadata: UserMetadata | null = null;
@@ -35,12 +37,10 @@ export class AddUserPage {
 
   handleFormSubmit(userInfo: UserExtensive): void {
     this.userService.addUser(userInfo).subscribe({
-      next: (response) => {
-        console.log('User created successfully:', response);
-      },
-      error: (error) => {
-        console.error('Error creating user:', error);
-        console.error('Error creating user:', userInfo);
+      next: (newUser) => {
+        this.router.navigate([`/users/${newUser.id}`], {
+          state: { userId: newUser.id },
+        });
       },
     });
   }

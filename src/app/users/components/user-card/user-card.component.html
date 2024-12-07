@@ -1,0 +1,48 @@
+<figure>
+  <img
+    src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+    alt="Shoes"
+  />
+</figure>
+<div class="card-body">
+  <div class="card-title flex items-center">
+    <h2 class="card-title">{{ userData?.fullName }}</h2>
+    <div class="badge badge-primary">{{ userData?.role?.name }}</div>
+  </div>
+  <div class="border-2 border-b-slate-500 pb-3">
+    <p>
+      Email: <span class="ml-2 font-bold">{{ userData?.email }}</span>
+    </p>
+    <p>
+      Phone Number:
+      <span class="ml-2 font-bold">{{ userData?.phoneNumber }}</span>
+    </p>
+    <p>
+      Gender: <span class="ml-2 font-bold">{{ userData?.gender }}</span>
+    </p>
+    @if(userData?.address) {
+    <p>
+      Address: <span class="ml-2 font-bold">{{ userData?.address }}</span>
+    </p>
+    } @else {
+    <p>
+      Address:
+      <span class="ml-2 font-bold badge badge-ghost">empty</span>
+    </p>
+    }
+  </div>
+  <div>
+    @if(userData?.manager) {
+    <p>
+      Manager:
+      <span class="ml-2 font-bold">{{ userData?.manager?.fullName }}</span>
+    </p>
+    }
+    <p>
+      Branch:
+      <span class="ml-2 font-bold"
+        ><a href="#">{{ userData?.branch?.name }}</a></span
+      >
+    </p>
+  </div>
+</div>

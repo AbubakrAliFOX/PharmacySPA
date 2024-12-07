@@ -2,6 +2,7 @@ import { UserExtensive } from '../models/UserExtensive';
 
 export function ToUserExtensive(formValue: any): UserExtensive {
   return {
+    id: null,
     userName: formValue.userName,
     email: formValue.email,
     password: formValue.password,

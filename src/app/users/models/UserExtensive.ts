@@ -1,4 +1,5 @@
 export interface UserExtensive {
+  id: number | null;
   userName: string;
   email: string;
   password: string;

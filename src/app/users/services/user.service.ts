@@ -6,6 +6,7 @@ import { User } from '../models/User';
 import { UserExtensive } from '../models/UserExtensive';
 import { SuccessService } from '../../core/services/success.service';
 import { ErrorService } from '../../core/services/error.service';
+import { UserShow } from '../models/UserShow';
 
 @Injectable({
   providedIn: 'root',
@@ -31,8 +32,8 @@ export class UserService {
     );
   }
 
-  getUser(id: string): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/${id}`).pipe(
+  getUser(id: Number): Observable<UserShow> {
+    return this.http.get<UserShow>(`${this.baseUrl}/${id}`).pipe(
       tap(() => this.successService.setSuccess('User retrieved successfully!')),
       catchError((error) => {
         this.errorService.setError('Failed to retrieve user information');
